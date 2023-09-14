@@ -1,0 +1,3 @@
+/loadrace camprace_a
+/loadrace camprace_b
+/loadmod campfire

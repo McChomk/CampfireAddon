@@ -22,7 +22,7 @@ if (!mod_exists("mod", "campfire"))
 		{
 			if (_d++ > 150)
 			{
-				trace("CAMPFIRE LOADER:#Server timed out! Using already downloaded files");
+				trace("CAMPFIRE LOADER:\nServer timed out! Using already downloaded files");
 				global.err = true;
 				break;
 			}
@@ -35,7 +35,7 @@ if (!mod_exists("mod", "campfire"))
 		var _str = string_load("ping.txt");
 		if (is_undefined(_str))
 		{
-			trace("CAMPFIRE LOADER:#Cannot connect to the internet, using already downloaded files");
+			trace("CAMPFIRE LOADER:\nCannot connect to the internet, using already downloaded files");
 			global.err = true;
 		}
 	}
@@ -43,7 +43,7 @@ if (!mod_exists("mod", "campfire"))
 	if (mod_exists("mod", "campfire")) exit;
 	if (!global.err)
 	{
-	    trace("CAMPFIRE LOADER:#Updating Campfire Addon...");
+	    trace("CAMPFIRE LOADER:\nUpdating Campfire Addon...");
 	    
 		file_delete("../../mods/campfireaddon/campfire.mod.gml");
 		file_delete("../../mods/campfireaddon/load_campfire.txt");

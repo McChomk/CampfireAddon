@@ -56,7 +56,14 @@ if (!mod_exists("mod", "campfire"))
 
 	if (mod_exists("mod", "campfire")) exit;
 	mod_load("campfireaddon/campfire.mod.gml");
-	
 	while(!mod_exists("mod", "campfire")) { wait(0); }
+	
 	global.loaded = 1;
+}
+else
+{
+    mod_load("campfireaddon/campfire.mod.gml");
+	while(!mod_exists("mod", "campfire")) { wait(0); }
+	
+    global.loaded = 1;
 }

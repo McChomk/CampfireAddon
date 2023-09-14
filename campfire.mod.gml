@@ -1,5 +1,5 @@
 #define init
-
+trace_color("CAMPFIRE KINO", c_maroon)
 global.created = false;
 global.loaded = false;
 global.level_loading = false;

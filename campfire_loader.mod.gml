@@ -40,7 +40,7 @@ if (!mod_exists("mod", "campfire"))
 		}
 	}
 	
-	if (mod_exists("mod", "lib")) exit;
+	if (mod_exists("mod", "campfire")) exit;
 	if (!global.err)
 	{
 		file_delete("../../mods/campfireaddon/campfire.mod.gml");
@@ -54,8 +54,7 @@ if (!mod_exists("mod", "campfire"))
 		while (!file_exists("../../mods/campfireaddon/campfire.mod.gml")) {wait 1;}
 	}
 
-	if (mod_exists("mod", "lib")) exit;
-	mod_load("")
+	if (mod_exists("mod", "campfire")) exit;
 	mod_load("campfireaddon/campfire.mod.gml");
 	
 	while(!mod_exists("mod", "campfire")) { wait(0); }

@@ -1,7 +1,7 @@
 # CampfireAddon
 Additional cosmetics for modded characters!
 
-MAIN INFO. INSIDE CAMPFIRE.MOD.GML FILE
+*<MAIN INFO. INSIDE CAMPFIRE.MOD.GML FILE>*
 
 Main Developer: McChomk
 Help /w additional systems: GoldenEpsilon

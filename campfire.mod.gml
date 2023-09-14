@@ -1,5 +1,4 @@
 #define init
-trace_color("CAMPFIRE KINO", c_maroon)
 global.created = false;
 global.loaded = false;
 global.level_loading = false;
@@ -97,6 +96,7 @@ else if(global.level_loading)
 
 if (instance_exists(Menu))
 {
+	trace("CAMPFIRE KINO")
 	if (!global.created)
 	{
 		global.created = true;

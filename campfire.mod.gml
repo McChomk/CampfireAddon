@@ -1,4 +1,5 @@
 #define init
+trace("KINOMAXXIN")
 
 global.created = false;
 global.loaded = false;

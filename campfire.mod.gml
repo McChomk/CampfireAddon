@@ -11,8 +11,6 @@ with instances_matching(CustomObject,"name","campfire_prop") instance_delete(sel
 #macro anim_end (image_index + image_speed >= image_number || image_index + image_speed < 0)
 
 #define level_start
-if (global.loading) exit;
-
 //Loop Campfire corpses lmao
 if (GameCont.area == 0 && array_length(global.chars))
 {
@@ -97,7 +95,6 @@ else if(global.level_loading)
 	level_start();
 }
 
-if (global.loading) exit;
 if (instance_exists(Menu))
 {
 	if (!global.created)

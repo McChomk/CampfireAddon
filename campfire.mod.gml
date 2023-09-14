@@ -1,90 +1,14 @@
 #define init
-/*
-	///CREDITS\\\
-	-McChomk (Main Mod coding)
-	-Golden Epsilon (Couple System)
-	
-	FOR HELP CONTACT McChomk#9393 ON DISCORD
-*/
-
-/*
-	///IMPORTANT INFO\\\
-	You need to have this file load AFTER your characters have been loaded.
-	In the main.txt that loads the character you want to add support for,
-	add as the last line "/loadmod campfire", like so:
-*/
-//loadrace race1/fish
-//loadrace race2/crystal
-
-//loadmod campfire
-
-/*
-    To give a custom character Campfire support, use this code, it will detect the character automatically
-*/
-//#define race_cf						return true;
-//#define race_cf_sprnotselected	    return <The character's "selected" sprite>;
-//#define race_cf_sprselected			return <The character's "not-selected" sprite>;
-//#define race_cf_sprselecting 	    	return <The character's "selecting" sprite (Transition from non-selected to selected)>;
-//#define race_cf_sprdeselecting	    return <The character's "deselecting" sprite (Transition from selected to non-selected)>;
-//#define race_cf_shadowx				return <Shadow's X offset>;
-//#define race_cf_shadowy		    	return <Shadow's Y offset>;
-//#define race_cf_corpse				return <Whether the character's corpse should appear on Loop Campfire>
-
-/*
-    Adding a Prop
-    (While the word "prop" is used, it acts more like a "setpiece" of sorts, as the character doesn't interact with the object. For animated stuff, include it in the character's animations)
-*/
-//#define race_cf_prop			return <The prop's sprite. For characters that don't have props, don't define the function>;
-//#define race_cf_proptyp		return <-1 or 1, -1 = Prop below character, 1 = Prop above character>;
-
-/*
-	Giving a character Couple Support
-	(Both characters have to have each other set as couple, DON'T SET OTHER PEOPLE'S CHARACTERS FOR COUPLE UNLESS WITH PRIOR DISCUSSION)
-	(For Prop support, only set the prop in one of the characters)
-*/
-//#define race_cf_couple						return <The other character's mod file name as a string, e.j.: If your character's file-name is "fishbutbig" and it's race_name is set to return "MegaFish", use "fishbutbig". For characters that don't have a couple, don't define the function>;
-//#define race_cf_couple_xoffset				return <The character's x offset from the center>;
-//#define race_cf_couple_yoffset				return <The character's y offset from the center>;
-
-//#define race_cf_couple_sprnotselectedn				return <The character's "selected" sprite>;
-//#define race_cf_couple_sprselectedn					return <The character's "not-selected" sprite>;
-//#define race_cf_couple_sprselectingn 					return <The character's "selecting" sprite (Transition from non-selected to selected)>;
-//#define race_cf_couple_sprdeselectingn				return <The character's "deselecting" sprite (Transition from selected to non-selected)>;
-//	These functions work exactly like the standard race_cf_spr<Type> functions.
-
-//#define race_cf_couple_sprselected			return <The character's "partner selected" sprite>;
-//#define race_cf_couple_sprselecting 	    	return <The character's "partner selecting from not-selected" sprite>;
-//#define race_cf_couple_sprdeselecting	    	return <The character's "partner deselecting from not-selected" sprite>;
-//#define race_cf_couple_sprswapping 			return <The character's "partner selecting from selected" sprite>;
-//#define race_cf_couple_sprdeswapping	    	return <The character's "selected from partner selected" sprite>;
-
-/*
-	Particles On-Load
-	(When the mod is first loaded, it will execute a particle creation script for extra flair)
-*/
-//#define race_cf_spawnparticles		<The particle creation script that you want to use, for customization purposes, you have to make it yourself. For characters that don't have spawn particles, don't define the function>;
-
-/*
-	Alt. Character Select set support
-*/
-//#define race_cf_characterset	return <String. The Character Set ID the given character is a part of, mainly used for WigglerCola's Alt. Character Select system>;
-//	Don't define if your character is part of the standard Character Set (Fish, Crystal, Melting, etc...).
-//  The script does nothing on it's own, it only works if Alt. Character select is loaded (Package it alongside your mod if you want that functionality). 
 
 global.created = false;
 global.loaded = false;
-global.loading = true;
 global.level_loading = false;
 global.chars = mod_get_names("race");
 
 with instances_matching(CampChar,"campfire_char",true) instance_delete(self);
 with instances_matching(CustomObject,"name","campfire_prop") instance_delete(self);
 
-wait(0);
-load_campfire();
-
 #macro anim_end (image_index + image_speed >= image_number || image_index + image_speed < 0)
-#macro url ""
 
 #define level_start
 if (global.loading) exit;
@@ -453,5 +377,3 @@ with (instances_matching(CampChar, "race", _char))
 		
 	sprite_index = spr_noslct;
 }
-
-#define load_campfire

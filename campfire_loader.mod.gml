@@ -43,8 +43,6 @@ if (!mod_exists("mod", "campfire"))
 	if (mod_exists("mod", "campfire")) exit;
 	if (!global.err)
 	{
-	    trace("CAMPFIRE LOADER:\nUpdating Campfire Addon...");
-	    
 		file_delete("../../mods/campfireaddon/campfire.mod.gml");
 		file_delete("../../mods/campfireaddon/load_campfire.txt");
 		

@@ -1,6 +1,5 @@
 #define init
-trace("tetas!")
-
+trace("LOADED CAMPFIRE")
 global.created = false;
 global.loaded = false;
 global.level_loading = false;

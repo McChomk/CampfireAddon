@@ -2,7 +2,7 @@
 // VERSION: 1.3.0
 
 global.loaded = false;
-wait(5);
+wait(1);
 load_campfire();
 
 #macro repo "https://raw.githubusercontent.com/McChomk/CampfireAddon/main/"
@@ -48,17 +48,17 @@ if (!mod_exists("mod", "campfire"))
 		file_delete("../../mods/campfireaddon/campfire.mod.gml");
 		file_delete("../../mods/campfireaddon/load_campfire.txt");
 		
-		while (file_exists("../../mods/campfireaddon/campfire.mod.gml")) {wait 1;}
-		while (file_exists("../../mods/campfireaddon/load_campfire.txt")) {wait 1;}
+		while (file_exists("../../mods/campfireaddon/campfire.mod.gml")) {wait 0;}
+		while (file_exists("../../mods/campfireaddon/load_campfire.txt")) {wait 0;}
 		
 		file_download(repo + "campfire.mod.gml", "../../mods/campfireaddon/campfire.mod.gml");
 		file_download(repo + "load_campfire.txt", "../../mods/campfireaddon/load_campfire.txt");
 		
-		while (!file_loaded("../../mods/campfireaddon/campfire.mod.gml")) {wait 1;}
-		while (!file_loaded("../../mods/campfireaddon/load_campfire.txt")) {wait 1;}
+		while (!file_loaded("../../mods/campfireaddon/campfire.mod.gml")) {wait 0;}
+		while (!file_loaded("../../mods/campfireaddon/load_campfire.txt")) {wait 0;}
 		
-		while (!file_exists("../../mods/campfireaddon/campfire.mod.gml")) {wait 1;}
-		while (!file_exists("../../mods/campfireaddon/load_campfire.txt")) {wait 1;}
+		while (!file_exists("../../mods/campfireaddon/campfire.mod.gml")) {wait 0;}
+		while (!file_exists("../../mods/campfireaddon/load_campfire.txt")) {wait 0;}
 	}
 
 	if (mod_exists("mod", "campfire")) exit;

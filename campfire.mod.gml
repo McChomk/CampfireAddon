@@ -1,5 +1,4 @@
 #define init
-trace("CAMPFIRE POGGERS!")
 
 global.created = false;
 global.loaded = false;

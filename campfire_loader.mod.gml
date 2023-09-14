@@ -44,20 +44,26 @@ if (!mod_exists("mod", "campfire"))
 	if (!global.err)
 	{
 	    trace("CAMPFIRE LOADER:#Updating Campfire Addon...");
+	    
 		file_delete("../../mods/campfireaddon/campfire.mod.gml");
+		file_delete("../../mods/campfireaddon/load_campfire.txt");
 		
 		while (file_exists("../../mods/campfireaddon/campfire.mod.gml")) {wait 1;}
+		while (file_exists("../../mods/campfireaddon/load_campfire.txt")) {wait 1;}
 		
 		file_download(repo + "campfire.mod.gml", "../../mods/campfireaddon/campfire.mod.gml");
+		file_download(repo + "load_campfire.txt", "../../mods/campfireaddon/load_campfire.txt");
 		
 		while (!file_loaded("../../mods/campfireaddon/campfire.mod.gml")) {wait 1;}
+		while (!file_loaded("../../mods/campfireaddon/load_campfire.txt")) {wait 1;}
 		
 		while (!file_exists("../../mods/campfireaddon/campfire.mod.gml")) {wait 1;}
+		while (!file_exists("../../mods/campfireaddon/load_campfire.txt")) {wait 1;}
 	}
 
 	if (mod_exists("mod", "campfire")) exit;
-	mod_load("campfireaddon/campfire.mod.gml");
-	while(!mod_exists("mod", "campfire")) { wait(0); }
+	mod_loadtext("campfireaddon/load_campfire.txt");
+	while (!mod_exists("mod", "campfire")) { wait(0); }
 	
 	global.loaded = 1;
 }

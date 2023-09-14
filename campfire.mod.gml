@@ -1,5 +1,5 @@
 #define init
-trace("HORSE!")
+trace("tetas!")
 
 global.created = false;
 global.loaded = false;

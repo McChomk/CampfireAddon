@@ -106,30 +106,41 @@ if (instance_exists(Menu))
 			
 			if ((!mod_script_exists("race", _self, "race_avail") || mod_script_call_nc("race", _self, "race_avail")) && (mod_script_exists("race", _self, "race_cf") && mod_script_call_nc("race", _self, "race_cf")) && !array_length(instances_matching(CampChar, "race", _self)))
 			{
-				var _positioner = instance_create(Campfire.x, Campfire.y, CustomObject),
-					_xpos = 0,
-					_ypos = 0,
-					_loops = 999;
-					
-				with (_positioner) 
+				// Positioner
+				var _xpos = 0, _ypos = 0;
+				if (mod_script_exists("race", _self, "race_cf_positioner"))
 				{
-					mask_index = mskPlayerMenu;
-					while(_loops > 0)
+					var _pos = mod_script_call_nc("race", _self, "race_cf_positioner");
+					trace("AAAAAAAA")
+					_xpos = _pos.x;
+					_ypos = _pos.y;
+				}
+				else
+				{
+					trace("FA:SE")
+					var _positioner = instance_create(Campfire.x, Campfire.y, CustomObject),
+						_loops = 999;
+						
+					with (_positioner) 
 					{
-						// Move Somewhere
-						x = xstart;
-						y = ystart;
-						move_contact_solid(random(360), random_range(32, 64) + random(random(64)));
-						x = round(x);
-						y = round(y);
-						// Safe
-						if(distance_to_object(instance_nearest(x, y, CampChar)) >= 16 && distance_to_object(instance_nearest(x, y, Campfire)) >= 24 && distance_to_object(instance_nearest(x, y, Campfire)) <= 240 && distance_to_object(instance_nearest(x, y, TV)) >= 32 && distance_to_object(instance_nearest(x, y, Campfire)) >= 12)
+						mask_index = mskPlayerMenu;
+						while(_loops > 0)
 						{
-							_xpos = x;
-							_ypos = y;
-							break;
+							// Move Somewhere
+							x = xstart;
+							y = ystart;
+							move_contact_solid(random(360), random_range(32, 64) + random(random(64)));
+							x = round(x);
+							y = round(y);
+							// Safe
+							if(distance_to_object(instance_nearest(x, y, CampChar)) >= 16 && distance_to_object(instance_nearest(x, y, Campfire)) >= 24 && distance_to_object(instance_nearest(x, y, Campfire)) <= 240 && distance_to_object(instance_nearest(x, y, TV)) >= 32 && distance_to_object(instance_nearest(x, y, Campfire)) >= 12)
+							{
+								_xpos = x;
+								_ypos = y;
+								break;
+							}
+							else _loops --;
 						}
-						else _loops --;
 					}
 				}
 				
@@ -325,7 +336,7 @@ with instance_create(_x,_y,CampChar)
 	race = _char;
 	mask_index = mskPlayerMenu;
 	image_speed = 0.4;
-	_depth = depth;
+	if (mod_script_exists("race",_char,"race_cf_depth")) depth = mod_script_call_nc("race",_char,"race_cf_depth");
 	
 	//Couple
 	couple = noone;
@@ -333,7 +344,7 @@ with instance_create(_x,_y,CampChar)
 	couple_selected = false;
 	
 	//Spawn Particles
-	if (mod_script_exists("race",_char,"race_cf_spawnparticles") && !global.loaded) mod_script_call_self("race",_char,"race_cf_spawnparticles");
+	if (mod_script_exists("race",_char,"race_cf_spawnparticles") && !global.loaded) mod_script_call_nc("race",_char,"race_cf_spawnparticles");
 	//Character Set
 	character_set_id = (mod_script_exists("race",_char,"race_cf_characterset"))  ? mod_script_call_nc("race",_char,"race_cf_characterset") : undefined;
 	

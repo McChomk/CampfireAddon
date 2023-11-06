@@ -31,15 +31,53 @@ To give a custom character Campfire support, use this code, it will detect the c
 -`#define race_cf_sprselecting` 	    return <The character's "selecting" sprite (Transition from non-selected to selected)\>  
 -`#define race_cf_sprdeselecting`		return <The character's "deselecting" sprite (Transition from selected to non-selected)\>  
 -`#define race_cf_shadowx`				return <Shadow's X offset\>  
--`#define race_cf_shadowy`		    	return <Shadow's Y offset\>  
--`#define race_cf_corpse`				return <Whether the character's corpse should appear on Loop Campfire\>  
+-`#define race_cf_shadowy`		    	return <Shadow's Y offset\>
+-`#define race_cf_depth`				return <The character's depth relative to other objects, as a numerical value. Don't define to set it to the default values.\>
+-`#define race_cf_corpse`				return <Whether the character's corpse should appear on Loop Campfire\>
+
+### CUSTOM CAMPFIRE POSITIONING
+To use a custom system, define this function. It should run custom logic that, in the end, returns the specified values.
+Do not define if you wish to use the custom positioning logic.
+
+-`#define race_cf_positioner`			return <Struct, with an "x" value, and a "y" value.\>
+
+For example, this would be a positioner script that works as the base one:
+	`#define race_cf_positioner`
+		var _positioner = instance_create(Campfire.x, Campfire.y, CustomObject),
+			_loops = 999,
+			_xpos = 0,
+			_ypos = 0;
+			
+		with (_positioner) 
+		{
+			mask_index = mskPlayerMenu;
+			while(_loops > 0)
+			{
+				// Move Somewhere
+				x = xstart;
+				y = ystart;
+				move_contact_solid(random(360), random_range(32, 64) + random(random(64)));
+				x = round(x);
+				y = round(y);
+				// Safe
+				if (distance_to_object(instance_nearest(x, y, CampChar)) >= 16 && distance_to_object(instance_nearest(x, y, Campfire)) >= 24 && distance_to_object(instance_nearest(x, y, Campfire)) <= 240 && distance_to_object(instance_nearest(x, y, TV)) >= 32 && distance_to_object(instance_nearest(x, y, Campfire)) >= 12)
+				{
+					_xpos = x;
+					_ypos = y;
+					break;
+				}
+				else _loops --;
+			}
+		}
+		
+		return { x : _xpos, y : _ypos };
 
 ### PROPS  
 While the word "prop" is used, it acts more like a "setpiece" of sorts, as the character doesn't interact with the object.  
 For animated stuff, include it in the character's animations  
 
--`#define race_cf_prop`			return <The prop's sprite. For characters that don't have props, don't define the function-  
--`#define race_cf_proptyp`		return <-1 or 1, -1 = Prop below character, 1 = Prop above character-  
+-`#define race_cf_prop`			return <The prop's sprite. For characters that don't have props, don't define the function.\>
+-`#define race_cf_proptyp`		return <-1 or 1, -1 = Prop below character, 1 = Prop above character.\>
 
 ### COUPLE SUPPORT  
 Both characters have to have each other set as couple. *DON'T SET OTHER PEOPLE'S CHARACTERS FOR COUPLE UNLESS WITH PRIOR DISCUSSION!*  

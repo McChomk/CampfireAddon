@@ -111,13 +111,11 @@ if (instance_exists(Menu))
 				if (mod_script_exists("race", _self, "race_cf_positioner"))
 				{
 					var _pos = mod_script_call_nc("race", _self, "race_cf_positioner");
-					trace("AAAAAAAA")
 					_xpos = _pos.x;
 					_ypos = _pos.y;
 				}
 				else
 				{
-					trace("FA:SE")
 					var _positioner = instance_create(Campfire.x, Campfire.y, CustomObject),
 						_loops = 999;
 						

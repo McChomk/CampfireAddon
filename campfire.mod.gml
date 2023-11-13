@@ -342,7 +342,7 @@ with instance_create(_x,_y,CampChar)
 	couple_selected = false;
 	
 	//Spawn Particles
-	if (mod_script_exists("race",_char,"race_cf_spawnparticles") && !global.loaded) mod_script_call_nc("race",_char,"race_cf_spawnparticles");
+	if (mod_script_exists("race",_char,"race_cf_spawnparticles") && !global.loaded) mod_script_call_self("race",_char,"race_cf_spawnparticles");
 	//Character Set
 	character_set_id = (mod_script_exists("race",_char,"race_cf_characterset"))  ? mod_script_call_nc("race",_char,"race_cf_characterset") : undefined;
 	

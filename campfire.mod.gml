@@ -115,7 +115,7 @@ if (instance_exists(Menu))
 				}
 				else
 				{
-					var _positioner = instance_create(0, 0, CustomObject),
+					var _positioner = instance_create(Campfire.x, Campfire.y, CustomObject),
 						_loops = 999;
 						
 					with (_positioner) 

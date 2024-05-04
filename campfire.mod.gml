@@ -20,8 +20,7 @@ if (GameCont.area == 0 && array_length(global.chars))
 		var _can = (!mod_script_exists("race", _self, "race_avail") || mod_script_call_nc("race", _self, "race_avail")) && (mod_script_exists("race", _self, "race_cf") && mod_script_call_nc("race", _self, "race_cf") != false);
 		if (_can && !array_length(instances_matching(Player,"race",_self)) && (mod_script_exists("race", _self, "race_cf_corpse") && mod_script_call_nc("race", _self, "race_cf_corpse") != false))
 		{
-			var _camp = instance_find(CampfireOff, irandom(instance_number(NightCactus) - 1));
-			with (instance_create(_camp.x, _camp.y, CustomObject))
+			with (instance_create(0, 0, CustomObject))
 			{
 				bskin = 0;
 				wep = 1;
@@ -116,7 +115,7 @@ if (instance_exists(Menu))
 				}
 				else
 				{
-					var _positioner = instance_create(Campfire.x, Campfire.y, CustomObject),
+					var _positioner = instance_create(0, 0, CustomObject),
 						_loops = 999;
 						
 					with (_positioner) 
@@ -193,7 +192,7 @@ with CampChar if ("campfire_char" in self)
 	//Check if Character is selected
 	for(var i = 0; i < maxp; i++) if player_is_active(i)
 	{
-		if (player_get_race(i) == race) with (instance_create(0, 0, Revive))
+		if (player_get_race(i) == race)
 		{
 			var _selected = true;
 			
@@ -209,18 +208,13 @@ with CampChar if ("campfire_char" in self)
 			}
 			
 			//Only pans camera if you're NOT on Local
-			var shake = UberCont.opt_shake;
-			if(!_local)
+			if (!_local)
 			{
-				UberCont.opt_shake = 1.15;
-				instance_change(Player,false);
-				p = i;
-				gunangle = point_direction(64,64,other.x,other.y);
-				weapon_post(0,point_distance(64,64,other.x,other.y)/10*current_time_scale,0);
+				view_object[i] = id;
+				view_pan_factor[i] = 10;
 			}
 			
 			instance_delete(self);
-			UberCont.opt_shake = shake;
 		} 
 	}
 	

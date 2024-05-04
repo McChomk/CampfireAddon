@@ -7,6 +7,8 @@ global.chars = mod_get_names("race");
 with instances_matching(CampChar,"campfire_char",true) instance_delete(self);
 with instances_matching(CustomObject,"name","campfire_prop") instance_delete(self);
 
+trace_color("CAMPFIRE ADDON LOADED!", c_aqua);
+
 #macro anim_end (image_index + image_speed >= image_number || image_index + image_speed < 0)
 
 #define level_start

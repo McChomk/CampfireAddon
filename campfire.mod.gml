@@ -208,11 +208,20 @@ with CampChar if ("campfire_char" in self)
 			}
 			
 			//Only pans camera if you're NOT on Local
+			var shake = UberCont.opt_shake;
 			if (!_local)
 			{
-				view_object[i] = id;
-				view_pan_factor[i] = 10;
+				//view_object[i] = id;
+				//view_pan_factor[i] = 10;
+				UberCont.opt_shake = 1.15;
+				instance_change(Player,false);
+				p = i;
+				gunangle = point_direction(64,64,other.x,other.y);
+				weapon_post(0,point_distance(64,64,other.x,other.y)/10*current_time_scale,0);
 			}
+			
+			instance_delete(self);
+			UberCont.opt_shake = shake;
 		} 
 	}
 	

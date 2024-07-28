@@ -192,7 +192,7 @@ with CampChar if ("campfire_char" in self)
 	//Check if Character is selected
 	for(var i = 0; i < maxp; i++) if player_is_active(i)
 	{
-		if (player_get_race(i) == race)
+		if (player_get_race(i) == race) with (instance_create(0, 0, Revive))
 		{
 			var _selected = true;
 			
